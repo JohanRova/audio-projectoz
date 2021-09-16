@@ -21,8 +21,9 @@
 
   <div class="fixed-bottom border border-4" style="height:15vh">
       <div>
-
-          <h1>lol</h1>
+          <h2>Controller</h2>
+          
+          
       </div>
   </div>
 </template>
