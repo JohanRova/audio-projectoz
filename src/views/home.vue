@@ -12,13 +12,12 @@
       aria-describedby="basic-addon1"
     />
   </div>
-  <h1>searchterm is {{ searchterm }}</h1>
   <h1>Search return is:</h1>
-  <ul id="array-rendering">
-    <li v-for="item in this.$store.state.searchResult" v-bind:key="item.id">
+  <ol id="array-rendering" class="list-group">
+    <li v-for="item in this.$store.state.searchResult.content" v-bind:key="item.id">
       <p>{{ item.name }}</p>
     </li>
-  </ul>
+  </ol>
   <!--<p>{{ this.$store.state.searchResult.content }}</p>-->
 
   <div class="d-flex flex-row justify-content-center">
@@ -48,33 +47,33 @@
     </button>
   </div>
 
-  <div class="fixed-bottom border border-4" style="height: 15vh">
+  <div class="fixed-bottom border border-4 bg-info" style="height: 15vh">
     <div>
       <div class="d-flex justify-content-center" style="padding-top: 1vh">
         <button
           type="button"
-          class="btn btn-outline-primary mx-1"
+          class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
         >
           <img src="/src/icons/skip-backward.svg" />
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary mx-1"
+          class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
         >
           <img src="/src/icons/play.svg" />
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary mx-1"
+          class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
         >
           <img src="/src/icons/pause.svg" />
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary mx-1"
+          class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
         >
           <img src="/src/icons/skip-forward.svg" />
@@ -107,7 +106,7 @@ export default {
         "https://yt-music-api.herokuapp.com/api/yt/songs/" + searchFor
       );
       //this.searchResult = await rawResponse.json();
-      this.$store.commit("setName", await rawResponse.json());
+      this.$store.commit("setSearch", await rawResponse.json());
       console.log(this.$store.state.searchResult);
     },
     async searchAlbum(searchFor) {

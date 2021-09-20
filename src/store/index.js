@@ -5,7 +5,7 @@ const store = createStore({
         searchResult: []
     },
     mutations:{
-        setName(state, x){
+        setSearch(state, x){
             state.searchResult = x
         }
     },
