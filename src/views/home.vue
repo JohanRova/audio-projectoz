@@ -12,14 +12,8 @@
       aria-describedby="basic-addon1"
     />
   </div>
-  <h1>Search return is:</h1>
-  <ol id="array-rendering" class="list-group">
-    <li v-for="item in this.$store.state.searchResult.content" v-bind:key="item.id">
-      <p>{{ item.name }}</p>
-    </li>
-  </ol>
-  <!--<p>{{ this.$store.state.searchResult.content }}</p>-->
 
+  <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
     <button
       v-on:click="searchSong(searchterm)"
@@ -37,6 +31,8 @@
     >
       Search artist
     </button>
+
+    <!-- SEARCH ALBUM IS REMOVED SINCE IT WAS REMOVED FROM THE REQUIREMENTS LIST
     <button
       v-on:click="searchAlbum(searchterm)"
       type="button"
@@ -44,9 +40,41 @@
       style="margin-left: 0.5vw; margin-right: 0.5vw"
     >
       Search album
-    </button>
+    </button> -->
   </div>
 
+  <!--search results etc.-->
+  <div class="d-inline-flex" style="margin-top:2vh">
+    <ol
+      id="array-rendering"
+      class="list-group"
+      style="width: 75vw; margin-bottom: 15vw"
+    >
+      <li
+        class="list-group-item d-flex flex-column"
+        v-for="item in this.$store.state.searchResult.content"
+        v-bind:key="item.id"
+      >
+        <div class="d-flex flex-row justify-content-between">
+          <button
+            type="button"
+            class="btn btn-outline-primary mx-1"
+            style="display: flex"
+          >
+            <img src="/src/icons/play.svg" />
+          </button>
+          <div class="p-2 border border-primary rounded mx-2 w-50">
+            {{ item.name }}
+          </div>
+          <div class="p-2 border border-primary rounded mx-2 w-50">
+            {{ item.artist.name }}
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <!--media controller below-->
   <div class="fixed-bottom border border-4 bg-info" style="height: 15vh">
     <div>
       <div class="d-flex justify-content-center" style="padding-top: 1vh">
