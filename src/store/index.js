@@ -2,11 +2,11 @@ import { createStore } from "vuex"
 
 const store = createStore({
     state:{
-        name: "Johan"
+        searchResult: []
     },
     mutations:{
         setName(state, x){
-            state.name = x
+            state.searchResult = x
         }
     },
     actions:{

@@ -4,7 +4,7 @@
   <div class="input-group mb-3" style="padding-left: 3vw; padding-right: 3vw">
     <div class="input-group-prepend"></div>
     <input
-    v-model="searchterm"
+      v-model="searchterm"
       type="text"
       class="form-control"
       placeholder="Search"
@@ -13,6 +13,13 @@
     />
   </div>
   <h1>searchterm is {{ searchterm }}</h1>
+  <h1>Search return is:</h1>
+  <ul id="array-rendering">
+    <li v-for="item in this.$store.state.searchResult" v-bind:key="item.id">
+      <p>{{ item.name }}</p>
+    </li>
+  </ul>
+  <!--<p>{{ this.$store.state.searchResult.content }}</p>-->
 
   <div class="d-flex flex-row justify-content-center">
     <button
@@ -43,18 +50,34 @@
 
   <div class="fixed-bottom border border-4" style="height: 15vh">
     <div>
-      <div class="d-flex justify-content-center" style="padding-top:1vh">
-        <button type="button" class="btn btn-outline-primary mx-1" style="display:flex;">
-          <img src="/src/icons/skip-backward.svg"/>
+      <div class="d-flex justify-content-center" style="padding-top: 1vh">
+        <button
+          type="button"
+          class="btn btn-outline-primary mx-1"
+          style="display: flex"
+        >
+          <img src="/src/icons/skip-backward.svg" />
         </button>
-        <button type="button" class="btn btn-outline-primary mx-1" style="display:flex;">
-          <img src="/src/icons/play.svg"/>
+        <button
+          type="button"
+          class="btn btn-outline-primary mx-1"
+          style="display: flex"
+        >
+          <img src="/src/icons/play.svg" />
         </button>
-        <button type="button" class="btn btn-outline-primary mx-1" style="display:flex">
-          <img src="/src/icons/pause.svg"/>
+        <button
+          type="button"
+          class="btn btn-outline-primary mx-1"
+          style="display: flex"
+        >
+          <img src="/src/icons/pause.svg" />
         </button>
-        <button type="button" class="btn btn-outline-primary mx-1" style="display:flex;">
-          <img src="/src/icons/skip-forward.svg"/>
+        <button
+          type="button"
+          class="btn btn-outline-primary mx-1"
+          style="display: flex"
+        >
+          <img src="/src/icons/skip-forward.svg" />
         </button>
       </div>
     </div>
@@ -63,26 +86,37 @@
 
 <script>
 export default {
-  data(){
-    return {searchterm: "asdlol"}
+  data() {
+    return {
+      searchterm: "asdlol",
+      items: [{ message: "foo" }, { message: "bar" }],
+      searchResult: [],
+    };
   },
-  methods:{
-    async searchArtist(searchFor){
-      console.log(searchFor)
-      let rawResponse = await fetch('https://yt-music-api.herokuapp.com/api/yt/artists/' + searchFor)
-      console.log(await rawResponse.json())
+  methods: {
+    async searchArtist(searchFor) {
+      console.log(searchFor);
+      let rawResponse = await fetch(
+        "https://yt-music-api.herokuapp.com/api/yt/artists/" + searchFor
+      );
+      //console.log(await rawResponse.json())
     },
-    async searchSong(searchFor){
-      console.log(searchFor)
-      let rawResponse = await fetch('https://yt-music-api.herokuapp.com/api/yt/songs/' + searchFor)
-      console.log(await rawResponse.json())
+    async searchSong(searchFor) {
+      console.log(searchFor);
+      let rawResponse = await fetch(
+        "https://yt-music-api.herokuapp.com/api/yt/songs/" + searchFor
+      );
+      //this.searchResult = await rawResponse.json();
+      this.$store.commit("setName", await rawResponse.json());
+      console.log(this.$store.state.searchResult);
     },
-      async searchAlbum(searchFor){
-      console.log(searchFor)
-      let rawResponse = await fetch('https://yt-music-api.herokuapp.com/api/yt/search/' + searchFor)
-      console.log(await rawResponse.json())
+    async searchAlbum(searchFor) {
+      console.log(searchFor);
+      let rawResponse = await fetch(
+        "https://yt-music-api.herokuapp.com/api/yt/search/" + searchFor
+      );
+      console.log(await rawResponse.json());
     },
-  }
-
-}
+  },
+};
 </script>
