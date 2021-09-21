@@ -12,7 +12,6 @@
       aria-describedby="basic-addon1"
     />
   </div>
-
   <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
     <button
@@ -32,6 +31,12 @@
       Search artist
     </button>
 
+    <div>
+      <button @click="play('DXxeOvvNNwc')">The Black Page #1 on piano</button>
+      <button @click="play('CtkZxnkbjtI')">The Black Page #2 live band</button>
+      <button @click="pause()">Pause</button>
+    </div>
+    
     <!-- SEARCH ALBUM IS REMOVED SINCE IT WAS REMOVED FROM THE REQUIREMENTS LIST
     <button
       v-on:click="searchAlbum(searchterm)"
@@ -165,6 +170,13 @@ export default {
       );
       console.log(await rawResponse.json());
     },
+    play(id){
+      window.player.loadVideoById(id)
+      window.player.playVideo()
+    },
+    pause(){
+      window.player.pauseVideo()
+    }
   },
 };
 </script>
