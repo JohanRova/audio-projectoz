@@ -43,36 +43,59 @@
     </button> -->
   </div>
 
-  <!--search results etc.-->
-  <div class="d-inline-flex" style="margin-top:2vh">
-    <ol
-      id="array-rendering"
-      class="list-group"
-      style="width: 75vw; margin-bottom: 15vw"
-    >
-      <li
-        class="list-group-item d-flex flex-column"
-        v-for="item in this.$store.state.searchResult.content"
-        v-bind:key="item.id"
+  <!--search results song etc.-->
+  <template v-if="this.$store.state.searchSongBool === true">
+    <div class="d-inline-flex" style="margin-top:2vh">
+      <ol
+        id="array-rendering"
+        class="list-group"
+        style="width: 95vw; margin-bottom: 15vw"
       >
-        <div class="d-flex flex-row justify-content-between">
-          <button
-            type="button"
-            class="btn btn-outline-primary mx-1"
-            style="display: flex"
-          >
-            <img src="/src/icons/play.svg" />
-          </button>
-          <div class="p-2 border border-primary rounded mx-2 w-50">
-            {{ item.name }}
+        <li
+          class="list-group-item d-flex flex-column"
+          v-for="item in this.$store.state.searchResultSong.content"
+          v-bind:key="item.id"
+        >
+          <div class="d-flex flex-row justify-content-between">
+            <button
+              type="button"
+              class="btn btn-outline-primary mx-1"
+              style="display: flex"
+            >
+              <img src="/src/icons/play.svg" />
+            </button>
+            <div class="p-2 border border-primary rounded mx-2 w-50">
+              {{ item.name }}
+            </div>
+            <div class="p-2 border border-primary rounded mx-2 w-50">
+              {{ item.artist.name }}
+            </div>
           </div>
-          <div class="p-2 border border-primary rounded mx-2 w-50">
-            {{ item.artist.name }}
+        </li>
+      </ol>
+    </div>
+  </template>
+  <template v-else-if="this.$store.state.searchArtistBool === true">
+    <div class="d-inline-flex" style="margin-top:2vh">
+      <ol
+        id="array-rendering"
+        class="list-group"
+        style="width: 95vw; margin-bottom: 15vw"
+      >
+        <li
+          class="list-group-item d-flex flex-column"
+          v-for="item in this.$store.state.searchResultArtist.content"
+          v-bind:key="item.id"
+        >
+          <div class="d-flex flex-row justify-content-center">
+            <div class="p-2 border border-primary rounded mx-2 w-50">
+              {{ item.name }}
+            </div>
           </div>
-        </div>
-      </li>
-    </ol>
-  </div>
+        </li>
+      </ol>
+    </div>
+  </template>
 
   <!--media controller below-->
   <div class="fixed-bottom border border-4 bg-info" style="height: 15vh">
@@ -122,20 +145,18 @@ export default {
   },
   methods: {
     async searchArtist(searchFor) {
-      console.log(searchFor);
       let rawResponse = await fetch(
         "https://yt-music-api.herokuapp.com/api/yt/artists/" + searchFor
       );
-      //console.log(await rawResponse.json())
+      this.$store.commit("setSearchArtist", await rawResponse.json());
+      console.log(this.$store.state.searchResultArtist)
     },
     async searchSong(searchFor) {
-      console.log(searchFor);
       let rawResponse = await fetch(
         "https://yt-music-api.herokuapp.com/api/yt/songs/" + searchFor
       );
-      //this.searchResult = await rawResponse.json();
-      this.$store.commit("setSearch", await rawResponse.json());
-      console.log(this.$store.state.searchResult);
+      this.$store.commit("setSearchSong", await rawResponse.json());
+      console.log(this.$store.state.searchResultSong);
     },
     async searchAlbum(searchFor) {
       console.log(searchFor);
