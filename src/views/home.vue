@@ -115,6 +115,7 @@
           <img src="/src/icons/skip-backward.svg" />
         </button>
         <button
+          v-on:click="playAgain()"
           type="button"
           class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
@@ -122,6 +123,7 @@
           <img src="/src/icons/play.svg" />
         </button>
         <button
+          v-on:click="pause()"
           type="button"
           class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
@@ -178,6 +180,10 @@ export default {
     },
     pause(){
       window.player.pauseVideo()
+    },
+    playAgain()
+    {
+      window.player.playVideo()
     }
   },
 };
