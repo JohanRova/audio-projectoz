@@ -31,11 +31,11 @@
       Search artist
     </button>
 
-    <div>
+    <!-- <div>
       <button @click="play('DXxeOvvNNwc')">The Black Page #1 on piano</button>
       <button @click="play('CtkZxnkbjtI')">The Black Page #2 live band</button>
       <button @click="pause()">Pause</button>
-    </div>
+    </div> -->
     
     <!-- SEARCH ALBUM IS REMOVED SINCE IT WAS REMOVED FROM THE REQUIREMENTS LIST
     <button
@@ -63,6 +63,7 @@
         >
           <div class="d-flex flex-row justify-content-between">
             <button
+              v-on:click="play(item.videoId)"
               type="button"
               class="btn btn-outline-primary mx-1"
               style="display: flex"
@@ -171,6 +172,7 @@ export default {
       console.log(await rawResponse.json());
     },
     play(id){
+      console.log(id)
       window.player.loadVideoById(id)
       window.player.playVideo()
     },
