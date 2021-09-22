@@ -77,7 +77,7 @@
             </div>            
             <button
               data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" data-bs-custom-class="border"
-              v-on:click="copyShareLink(item.videoId)"
+              v-on:click="copyShareLink(item.videoId, 'song' )"
               type="button"
               class="btn btn-outline-primary mx-1"
               style="display: flex"
@@ -112,6 +112,15 @@
                 style="display: flex; color:black"
             >
             See artists songs
+            </button>
+            <button
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" data-bs-custom-class="border"
+              v-on:click="copyShareLink(item.browseId, 'artist' )"
+              type="button"
+              class="btn btn-outline-primary mx-1"
+              style="display: flex"
+            >
+              <img src="/src/icons/share.svg" />
             </button>
           </div>
         </li>
@@ -163,20 +172,28 @@
 <script>
 export default {
   mounted(){
-    console.log("linkparameter: " + this.$route.params.videoId)
-    if(this.$route.params.videoId === undefined)
+    //console.log("linkparameter: " + this.$route.params.videoId)
+    //console.log("link path: " + this.$route.path)
+    //console.log("linkparameter artist: " + this.$route.params.artistId)
+    
+    if((this.$route.params.videoId === undefined) && (this.$route.params.artistId === undefined))
     {
+      console.log("Both parameters undefined")
 
     }
-    else
+    else if(this.$route.params.videoId != undefined)
     {
-    this.searchSong(this.$route.params.videoId)     
+      this.searchSong(this.$route.params.videoId) 
     }
+    else if(this.$route.params.artistId != undefined){
+      this.searchArtist(this.$route.params.artistId)
+    }
+
 
   },
   data() {
     return {
-      searchterm: "asdlol",
+      searchterm: "",
       items: [{ message: "foo" }, { message: "bar" }],
       searchResult: [],
     };
@@ -229,8 +246,8 @@ export default {
       window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
       window.player.playVideo()
     },
-    copyShareLink(videoId){
-      navigator.clipboard.writeText("localhost:3000/song/" + videoId)
+    copyShareLink(videoId, shareType){
+      navigator.clipboard.writeText("localhost:3000/" + shareType + "/" + videoId)
     }
   },
 };
