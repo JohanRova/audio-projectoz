@@ -76,7 +76,6 @@
             <div class="p-2 border border-primary rounded mx-2 w-50">
               {{ item.artist.name }}
             </div>
-            <div>{{ index }}</div>
           </div>
         </li>
       </ol>
@@ -109,6 +108,7 @@
     <div>
       <div class="d-flex justify-content-center" style="padding-top: 1vh">
         <button
+          v-on:click="playPrevious()"
           type="button"
           class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
@@ -193,6 +193,11 @@ export default {
     playNext(){
       this.$store.commit("playNext")
       console.log(this.$store.state.currentlyPlayingIndex)
+      window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
+      window.player.playVideo()
+    },
+    playPrevious(){
+      this.$store.commit("playPrevious")
       window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
       window.player.playVideo()
     }
