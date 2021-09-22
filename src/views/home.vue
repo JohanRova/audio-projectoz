@@ -58,12 +58,12 @@
       >
         <li
           class="list-group-item d-flex flex-column"
-          v-for="item in this.$store.state.searchResultSong.content"
+          v-for="(item, index) in this.$store.state.searchResultSong.content"
           v-bind:key="item.id"
         >
           <div class="d-flex flex-row justify-content-between">
             <button
-              v-on:click="play(item.videoId)"
+              v-on:click="play(item.videoId, index)"
               type="button"
               class="btn btn-outline-primary mx-1"
               style="display: flex"
@@ -76,6 +76,7 @@
             <div class="p-2 border border-primary rounded mx-2 w-50">
               {{ item.artist.name }}
             </div>
+            <div>{{ index }}</div>
           </div>
         </li>
       </ol>
@@ -131,6 +132,7 @@
           <img src="/src/icons/pause.svg" />
         </button>
         <button
+        v-on:click="playNext()"
           type="button"
           class="btn btn-outline-primary mx-1 bg-primary"
           style="display: flex"
@@ -173,16 +175,25 @@ export default {
       );
       console.log(await rawResponse.json());
     },
-    play(id){
+    play(id, index){
       console.log(id)
       window.player.loadVideoById(id)
       window.player.playVideo()
+      this.$store.commit("setPlaylist", index)
+      console.log(this.$store.state.currentlyPlayingIndex)
+      //console.log(this.$store.state.currentPlaylist)
     },
     pause(){
       window.player.pauseVideo()
     },
     playAgain()
     {
+      window.player.playVideo()
+    },
+    playNext(){
+      this.$store.commit("playNext")
+      console.log(this.$store.state.currentlyPlayingIndex)
+      window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
       window.player.playVideo()
     }
   },

@@ -6,6 +6,8 @@ const store = createStore({
         searchResultArtist: [],
         searchSongBool: false,
         searchArtistBool: false,
+        currentPlaylist: [],
+        currentlyPlayingIndex: 0,
     },
     mutations:{
         setSearchSong(state, x){
@@ -20,6 +22,14 @@ const store = createStore({
             state.searchResultArtist = x
             state.searchArtistBool = true
         },
+        setPlaylist(state, x){
+            //state.currentPlaylist = state.searchResultSong.content.slice(x)
+            state.currentPlaylist = state.searchResultSong.content
+            state.currentlyPlayingIndex = x
+        },
+        playNext(state){
+            state.currentlyPlayingIndex++
+        }
 
     },
     actions:{
