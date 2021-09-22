@@ -9,8 +9,18 @@ const routes = [
         component: HelloWorld,
     },
     {
-        path: '/home',
+        path: '/',
         name: 'Home',
+        component: home,
+    },
+    {
+        path: '/song/:videoId',
+        name: 'Song Share',
+        component: home,
+    },
+    {
+        path: '/artist/:artistId',
+        name: 'Artist Share',
         component: home,
     },
 ]

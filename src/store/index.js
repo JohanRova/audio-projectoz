@@ -31,7 +31,9 @@ const store = createStore({
             state.currentlyPlayingIndex++
         },
         playPrevious(state){
-            state.currentlyPlayingIndex--
+            if(state.currentlyPlayingIndex > 0){
+                state.currentlyPlayingIndex--
+            }
         }
 
     },

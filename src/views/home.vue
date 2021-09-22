@@ -1,6 +1,5 @@
 <template>
   <h1 style="position: absolute; top: 0; width: 100%">Musicalez</h1>
-
   <div class="input-group mb-3" style="padding-left: 3vw; padding-right: 3vw">
     <div class="input-group-prepend"></div>
     <input
@@ -75,7 +74,16 @@
             </div>
             <div class="p-2 border border-primary rounded mx-2 w-50">
               {{ item.artist.name }}
-            </div>
+            </div>            
+            <button
+              data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" data-bs-custom-class="border"
+              v-on:click="copyShareLink(item.videoId)"
+              type="button"
+              class="btn btn-outline-primary mx-1"
+              style="display: flex"
+            >
+              <img src="/src/icons/share.svg" />
+            </button>
           </div>
         </li>
       </ol>
@@ -97,6 +105,14 @@
             <div class="p-2 border border-primary rounded mx-2 w-50">
               {{ item.name }}
             </div>
+             <button
+             v-on:click="searchSong(item.name)"
+                type="button"
+                class="btn btn-outline-primary mx-1 p-2"
+                style="display: flex; color:black"
+            >
+            See artists songs
+            </button>
           </div>
         </li>
       </ol>
@@ -146,6 +162,18 @@
 
 <script>
 export default {
+  mounted(){
+    console.log("linkparameter: " + this.$route.params.videoId)
+    if(this.$route.params.videoId === undefined)
+    {
+
+    }
+    else
+    {
+    this.searchSong(this.$route.params.videoId)     
+    }
+
+  },
   data() {
     return {
       searchterm: "asdlol",
@@ -200,6 +228,9 @@ export default {
       this.$store.commit("playPrevious")
       window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
       window.player.playVideo()
+    },
+    copyShareLink(videoId){
+      navigator.clipboard.writeText("localhost:3000/song/" + videoId)
     }
   },
 };
