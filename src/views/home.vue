@@ -54,7 +54,7 @@
       <ol
         id="array-rendering"
         class="list-group"
-        style="width: 95vw; margin-bottom: 15vw"
+        style="width: 95vw; margin-bottom: 19vh"
       >
         <li
           class="list-group-item d-flex flex-column"
