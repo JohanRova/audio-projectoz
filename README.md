@@ -1,7 +1,21 @@
-# Vue 3 + Vite
+# Audio project
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+** This is a version that works and according to my interpretation fulfills all the requirements set. Therefore it is marked V1. I will try and refactor the code to *be better* but this is branched as V1 for easy access in case my refactoring goes bad.  **
 
-## Recommended IDE Setup
+## Starting instructions
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+npm install
+(if that doesn't work on it's own)
+npm install bootstrap@next
+npm install --save @popperjs/core
+npm install vue-router@4
+npm install vuex@4
+
+## Dependencies
+Bootstrap
+PopperJs
+Vue Router
+VueX
+
+## How to run
+npm run dev
