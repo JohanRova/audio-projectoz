@@ -4,18 +4,23 @@
 
 ## Starting instructions
 
-npm install
-(if that doesn't work on it's own)
-npm install bootstrap@next
-npm install --save @popperjs/core
-npm install vue-router@4
-npm install vuex@4
+* npm install
+
+**(if that doesn't work on it's own)**
+
+* npm install bootstrap@next
+
+* npm install --save @popperjs/core
+
+* npm install vue-router@4
+
+* npm install vuex@4
 
 ## Dependencies
-Bootstrap
-PopperJs
-Vue Router
-VueX
+* Bootstrap
+* PopperJs
+* Vue Router
+* VueX
 
 ## How to run
-npm run dev
+* npm run dev
