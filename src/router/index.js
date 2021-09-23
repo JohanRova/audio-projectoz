@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HelloWorld from '/src/components/HelloWorld.vue'
 import home from '/src/views/home.vue'
+import MediaController from '/src/components/MediaController.vue'
 
 const routes = [
     {

@@ -1,5 +1,5 @@
 <template>
-  <h1 style="position: absolute; top: 0; width: 100%">Musicalez</h1>
+  <h1 style="position: absolute; top: 0; width: 100%"><a href="/">Musicalez</a></h1>
   <div class="input-group mb-3" style="padding-left: 3vw; padding-right: 3vw">
     <div class="input-group-prepend"></div>
     <input
@@ -10,6 +10,7 @@
       aria-label="Search"
       aria-describedby="basic-addon1"
     />
+    <div><MediaController/></div>
   </div>
   <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
@@ -127,50 +128,13 @@
       </ol>
     </div>
   </template>
-
-  <!--media controller below-->
-  <div class="fixed-bottom border border-4 bg-info" style="height: 15vh">
-    <div>
-      <div class="d-flex justify-content-center" style="padding-top: 1vh">
-        <button
-          v-on:click="playPrevious()"
-          type="button"
-          class="btn btn-outline-primary mx-1 bg-primary"
-          style="display: flex"
-        >
-          <img src="/src/icons/skip-backward.svg" />
-        </button>
-        <button
-          v-on:click="playAgain()"
-          type="button"
-          class="btn btn-outline-primary mx-1 bg-primary"
-          style="display: flex"
-        >
-          <img src="/src/icons/play.svg" />
-        </button>
-        <button
-          v-on:click="pause()"
-          type="button"
-          class="btn btn-outline-primary mx-1 bg-primary"
-          style="display: flex"
-        >
-          <img src="/src/icons/pause.svg" />
-        </button>
-        <button
-        v-on:click="playNext()"
-          type="button"
-          class="btn btn-outline-primary mx-1 bg-primary"
-          style="display: flex"
-        >
-          <img src="/src/icons/skip-forward.svg" />
-        </button>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
+import MediaController from '../components/MediaController.vue';
+
 export default {
+  components: { MediaController },
   mounted(){
     //console.log("linkparameter: " + this.$route.params.videoId)
     //console.log("link path: " + this.$route.path)
@@ -227,24 +191,6 @@ export default {
       this.$store.commit("setPlaylist", index)
       console.log(this.$store.state.currentlyPlayingIndex)
       //console.log(this.$store.state.currentPlaylist)
-    },
-    pause(){
-      window.player.pauseVideo()
-    },
-    playAgain()
-    {
-      window.player.playVideo()
-    },
-    playNext(){
-      this.$store.commit("playNext")
-      console.log(this.$store.state.currentlyPlayingIndex)
-      window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
-      window.player.playVideo()
-    },
-    playPrevious(){
-      this.$store.commit("playPrevious")
-      window.player.loadVideoById(this.$store.state.currentPlaylist[this.$store.state.currentlyPlayingIndex].videoId)
-      window.player.playVideo()
     },
     copyShareLink(videoId, shareType){
       navigator.clipboard.writeText("localhost:3000/" + shareType + "/" + videoId)

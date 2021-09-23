@@ -1,9 +1,18 @@
-<script setup>
-</script>
-
 <template>
 <router-view/>
+<MediaController/>
 </template>
+
+<script>
+import MediaController from "./components/MediaController.vue";
+
+export default {
+  components:{
+    MediaController
+  }
+}
+
+</script>
 
 <style>
 #app {
