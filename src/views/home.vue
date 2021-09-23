@@ -10,7 +10,6 @@
       aria-label="Search"
       aria-describedby="basic-addon1"
     />
-    <div><MediaController/></div>
   </div>
   <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
@@ -134,7 +133,7 @@
 import MediaController from '../components/MediaController.vue';
 
 export default {
-  components: { MediaController },
+  //components: { MediaController },
   mounted(){
     //console.log("linkparameter: " + this.$route.params.videoId)
     //console.log("link path: " + this.$route.path)
