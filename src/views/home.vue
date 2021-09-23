@@ -1,52 +1,4 @@
 <template>
-  <h1 style="position: absolute; top: 0; width: 100%"><a href="/">Musicalez</a></h1>
-  <div class="input-group mb-3" style="padding-left: 3vw; padding-right: 3vw">
-    <div class="input-group-prepend"></div>
-    <input
-      v-model="searchterm"
-      type="text"
-      class="form-control"
-      placeholder="Search"
-      aria-label="Search"
-      aria-describedby="basic-addon1"
-    />
-  </div>
-  <!--buttons for search-->
-  <div class="d-flex flex-row justify-content-center">
-    <button
-      v-on:click="searchSong(searchterm)"
-      type="button"
-      class="btn btn-primary"
-      style="margin-left: 0.5vw; margin-right: 0.5vw"
-    >
-      Search song
-    </button>
-    <button
-      v-on:click="searchArtist(searchterm)"
-      type="button"
-      class="btn btn-primary"
-      style="margin-left: 0.5vw; margin-right: 0.5vw"
-    >
-      Search artist
-    </button>
-
-    <!-- <div>
-      <button @click="play('DXxeOvvNNwc')">The Black Page #1 on piano</button>
-      <button @click="play('CtkZxnkbjtI')">The Black Page #2 live band</button>
-      <button @click="pause()">Pause</button>
-    </div> -->
-    
-    <!-- SEARCH ALBUM IS REMOVED SINCE IT WAS REMOVED FROM THE REQUIREMENTS LIST
-    <button
-      v-on:click="searchAlbum(searchterm)"
-      type="button"
-      class="btn btn-primary"
-      style="margin-left: 0.5vw; margin-right: 0.5vw"
-    >
-      Search album
-    </button> -->
-  </div>
-
   <!--search results song etc.-->
   <template v-if="this.$store.state.searchSongBool === true">
     <div class="d-inline-flex" style="margin-top:2vh">
@@ -135,9 +87,6 @@ import MediaController from '../components/MediaController.vue';
 export default {
   //components: { MediaController },
   mounted(){
-    //console.log("linkparameter: " + this.$route.params.videoId)
-    //console.log("link path: " + this.$route.path)
-    //console.log("linkparameter artist: " + this.$route.params.artistId)
     
     if((this.$route.params.videoId === undefined) && (this.$route.params.artistId === undefined))
     {
@@ -162,27 +111,6 @@ export default {
     };
   },
   methods: {
-    async searchArtist(searchFor) {
-      let rawResponse = await fetch(
-        "https://yt-music-api.herokuapp.com/api/yt/artists/" + searchFor
-      );
-      this.$store.commit("setSearchArtist", await rawResponse.json());
-      console.log(this.$store.state.searchResultArtist)
-    },
-    async searchSong(searchFor) {
-      let rawResponse = await fetch(
-        "https://yt-music-api.herokuapp.com/api/yt/songs/" + searchFor
-      );
-      this.$store.commit("setSearchSong", await rawResponse.json());
-      console.log(this.$store.state.searchResultSong);
-    },
-    async searchAlbum(searchFor) {
-      console.log(searchFor);
-      let rawResponse = await fetch(
-        "https://yt-music-api.herokuapp.com/api/yt/search/" + searchFor
-      );
-      console.log(await rawResponse.json());
-    },
     play(id, index){
       console.log(id)
       window.player.loadVideoById(id)

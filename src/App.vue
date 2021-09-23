@@ -1,15 +1,21 @@
 <template>
+<Search/>
 <router-view/>
 <MediaController/>
 </template>
 
 <script>
 import MediaController from "./components/MediaController.vue";
+import Search from "./components/Search.vue"
 
 export default {
   components:{
-    MediaController
-  }
+    MediaController,
+    Search,
+  },
+  methods:
+  {
+  },
 }
 
 </script>
