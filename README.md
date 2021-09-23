@@ -1,6 +1,6 @@
 # Audio project
 
-** This is a version that works and according to my interpretation fulfills all the requirements set. Therefore it is marked V1. I will try and refactor the code to *be better* but this is branched as V1 for easy access in case my refactoring goes bad.  **
+**This is a version that works and according to my interpretation fulfills all the requirements set. Therefore it is marked V1. I will try and refactor the code to *be better* but this is branched as V1 for easy access in case my refactoring goes bad.**
 
 ## Starting instructions
 
