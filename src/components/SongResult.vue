@@ -5,6 +5,7 @@
       class="list-group"
       style="width: 95vw; margin-bottom: 19vh"
     >
+    <p class="border border">You searched for: {{ this.$route.params.songId }}</p>
       <li
         class="list-group-item d-flex flex-column"
         v-for="(item, index) in this.$store.state.searchResultSong.content"
@@ -47,8 +48,7 @@
 export default {
   mounted(){
       this.searchSong(this.$route.params.songId)
-      
-  },
+    },
   methods: {
     play(id, index) {
       console.log(id);

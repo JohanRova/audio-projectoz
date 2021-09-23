@@ -15,7 +15,8 @@
   </div>
   <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
-  <router-link tag="button" class="btn btn-primary" :to="'/song' + '/metallica'" >Search song</router-link>
+    
+  <router-link tag="button" class="btn btn-primary" :to="'/song' + '/' + searchterm" >Search song</router-link>
     <!-- <button
       v-on:click="searchSong(searchterm)"
       type="button"
@@ -33,7 +34,7 @@
       Search artist
     </button>
   </div>
-  <router-view />
+  <router-view :key="$route.fullPath" />
   <!-- <SongResult /> -->
   <MediaController />
 </template>
@@ -44,8 +45,12 @@ import Search from "./components/Search.vue";
 import SongResult from "./components/SongResult.vue";
 
 export default {
-  mounted(){
-    console.log(this.$route.params.id)
+  data(){
+    return{
+      searchterm: '',
+    };
+  },
+  mounted(){    
   },
   components: {
     MediaController,
@@ -66,6 +71,7 @@ export default {
       );
       this.$store.commit("setSearchSong", await rawResponse.json());
       console.log(this.$store.state.searchResultSong);
+      this.$store.commit("currentSearchhword", searchFor)
     },
   },
 };

@@ -8,8 +8,13 @@ const store = createStore({
         searchArtistBool: false,
         currentPlaylist: [],
         currentlyPlayingIndex: 0,
+        searchWord: '',
     },
     mutations:{
+        currentSearchhword(state, x){
+            state.searchWord = x
+
+        },
         setSearchSong(state, x){
             state.searchArtistBool = false
             state.searchResultArtist = []
