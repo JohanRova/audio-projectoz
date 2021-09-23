@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import HelloWorld from '/src/components/HelloWorld.vue'
 import home from '/src/views/home.vue'
 import MediaController from '/src/components/MediaController.vue'
+import SongResult from '/src/components/SongResult.vue'
 
 const routes = [
     {
@@ -15,9 +16,9 @@ const routes = [
         component: home,
     },
     {
-        path: '/song/:videoId',
-        name: 'Song Share',
-        component: home,
+        path: '/song/:songId',
+        name: 'Song result',
+        component: SongResult,
     },
     {
         path: '/artist/:artistId',

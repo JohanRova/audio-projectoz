@@ -1,17 +1,20 @@
 <template>
 <Search/>
 <router-view/>
+<SongResult/>
 <MediaController/>
 </template>
 
 <script>
 import MediaController from "./components/MediaController.vue";
 import Search from "./components/Search.vue"
+import SongResult from "./components/SongResult.vue"
 
 export default {
   components:{
     MediaController,
     Search,
+    SongResult,
   },
   methods:
   {
