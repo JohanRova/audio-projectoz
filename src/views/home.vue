@@ -1,5 +1,5 @@
 <template>
-  <h1 style="position: absolute; top: 0; width: 100%">Musicalez</h1>
+  <h1 style="position: absolute; top: 0; width: 100%"><a href="/">Musicalez</a></h1>
   <div class="input-group mb-3" style="padding-left: 3vw; padding-right: 3vw">
     <div class="input-group-prepend"></div>
     <input
