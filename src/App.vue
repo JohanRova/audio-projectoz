@@ -16,26 +16,18 @@
   <!--buttons for search-->
   <div class="d-flex flex-row justify-content-center">
     
-  <router-link tag="button" class="btn btn-primary" :to="'/song' + '/' + searchterm" >Search song</router-link>
+  <router-link style="margin-left: 0.5vw; margin-right: 0.5vw" tag="button" class="btn btn-primary" :to="'/song' + '/' + searchterm" >Search song</router-link>
+  <router-link style="margin-left: 0.5vw; margin-right: 0.5vw" tag="button" class="btn btn-primary" :to="'/artist' + '/' + searchterm">Search artist</router-link>
     <!-- <button
-      v-on:click="searchSong(searchterm)"
-      type="button"
-      class="btn btn-primary"
-      style="margin-left: 0.5vw; margin-right: 0.5vw"
-    > 
-      Search song
-    </button> -->
-    <button
       v-on:click="searchArtist(searchterm)"
       type="button"
       class="btn btn-primary"
       style="margin-left: 0.5vw; margin-right: 0.5vw"
     >
       Search artist
-    </button>
+    </button> -->
   </div>
   <router-view :key="$route.fullPath" />
-  <!-- <SongResult /> -->
   <MediaController />
 </template>
 
@@ -43,6 +35,7 @@
 import MediaController from "./components/MediaController.vue";
 import Search from "./components/Search.vue";
 import SongResult from "./components/SongResult.vue";
+import ArtistResult from "./components/ArtistResult.vue"
 
 export default {
   data(){
@@ -56,6 +49,7 @@ export default {
     MediaController,
     Search,
     SongResult,
+    ArtistResult,
   },
   methods: {
     async searchArtist(searchFor) {
