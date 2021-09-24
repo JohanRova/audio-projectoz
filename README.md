@@ -1,6 +1,6 @@
 # Audio project
 
-**This is a version that works and according to my interpretation fulfills all the requirements set. Therefore it is marked V1. I will try and refactor the code to *be better* but this is branched as V1 for easy access in case my refactoring goes bad.**
+This version of the project is taken from the V1 branch and then mostly refactored. Some small improvements have been made when it comes to feedback to users but largely it works the same with very few visible changes. It should fullfill all the requirements not only by my personal interpretation but hopefully also according to the interpretation of others. 
 
 ## Starting instructions
 
