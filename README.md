@@ -2,6 +2,8 @@
 
 This version of the project is taken from the V1 branch and then mostly refactored. Some small improvements have been made when it comes to feedback to users but largely it works the same with very few visible changes. It should fullfill all the requirements not only by my personal interpretation but hopefully also according to the interpretation of others. 
 
+Project documentation was not made because no formal planning was done. I just started to script. 
+
 ## Starting instructions
 
 * npm install
